@@ -1,10 +1,7 @@
 <?php
 include("conexion.php");
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['email'])) {
-    // Recuperar el correo electrónico de la URL
     $email = $_GET['email'];
-
-    // Realizar una consulta para obtener el token correspondiente al correo electrónico
     $conn = connect();
     $stmt = $conn->prepare("SELECT token FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
@@ -33,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['email'])) {
     <h1>Codigo de recuperación de contraseña</h1>
     <p>Se ha generado un token del usuario:</p>
     <p>El token es: <?php echo $token; ?></p>
-    <p>Por favor, copia este token y pégalo en el formulario para cambiar la contraseña.</p>
+    <p>Copia y pega el token en el formulario</p>
     <a type="button" href="recovery_token.php"><b>Continuar</b></a>
 </body>
 </html>
